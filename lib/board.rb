@@ -2,19 +2,26 @@ require 'colorize'
 require 'messages'
 require 'board'
 
+  attr_reader :array, :history
 
 class Board
 
   def initialize
-    @messages = Messages.new
-    @user_win_rule = false
-    @comp_win_rule = false
-    @comp_ships = []
-    @user_shot_count = 0
-    @comp_shot_count = 0
-    @start_time = Time.now
-    @finish_time = Time.now
+    @placement_history = []
     @grid = grid
+    @array = [
+     "", "", "", "",
+     "", "", "", "",
+     "", "", "", "",
+     "", "", "", ""]
+  end
+
+  def render_to_screen
+    ". 1  2  3  4 \n
+    A  #{@array[0]} #{@array[1]} #{@array[2]} #{@array[3]} \n
+    B  #{@array[4]} #{@array[5]} #{@array[6]} #{@array[7]} \n
+    C  #{@array[8]} #{@array[9]} #{@array[10]} #{@array[11]} \n
+    D  #{@array[12]} #{@array[13]} #{@array[14]} #{@array[15]} \n"
   end
 
   def grid
@@ -24,44 +31,53 @@ class Board
             'A4' => 12, 'B4' => 13, 'C4' => 14, 'D4' => 15}
   end
 
-  def end_game_win
-    @finish_time = Time.now
-    @messages.win(@player_shot_counter, @start_time, @finish_time)
-    "Well, well, well. We have a winner! Great job!".colorize(:green, :bright)
+  def user_small
+    if validate_small_ship(coordinate_1, coordinate_2) == true
+      user_small_ship = Ship.new
+      user_small_ship.assign(coordinate_1)
+      user_small_ship.assign(coordinate_2)
+    else
+      puts Messages.invalid_length
+    end
+    return user_small_ship
   end
 
-  def end_game_lose
-    @finish_time = Time.now
-    @messages.lose(@comp_shot_counter, @start_time, @finish_time)
-    "Sorry, you lose. It's a bit of a hit or miss kind of game ;)".colorize(:red, :bright)
+  def user_large
+    if validate_large_ship(coordinate_1, coordinate_2) == true
+      user_large_ship = Ship.new
+      user_large_ship.assign(coordinate_1)
+      user_large_ship.assign(coordinate_2)
+    else
+      puts Messages.invalid_length
+    end
+    return user_large_ship
   end
 
-  def print_player_map
-    @messages.print_player_map(@displayed_comp_board)
+  def validate_small_ship(coordinate_1, coordinate_2)
+    x = (coordinate_1 - coordinate_2).abs
+      if (x == 1) || (x == 4)
+        return true #create a method to make ships once validated
+      else false
+      end
   end
 
-  def print_comp_map
-    @messages.print_comp_map(@player_board)
+  def validate_large_ship(coordinate_1, coordinate_2)
+    x = (coordinate_1 - coordinate_2).abs
+    if (x == 2) || (x == 8)
+      return true #create a method to make ships once validated
+    else false
+    end
   end
 
-  def someone_won?
-    @user_win_rule || @cpu_win_rule
+  def add_to_history(coordinate)
+    @placement_history << coordinate
   end
 
-  def user_win!
-    @user_win_rule = true
+  def duplicate_shot?(coordinate)
+    @placement_history.any? do |element|
+      element == coordinate
+    end
   end
 
-  def cpu_win!
-    @cpu_win_rule = true
-  end
-
-  def player_turn?
-    @player_turn
-  end
-
-  def turn!
-    @player_turn = !@player_turn
-  end
 
 end

@@ -9,11 +9,11 @@ class Battleship
 
 
   def welcome
-    "Welcome to BATTLESHIP".colorize(:blue)
+    "Welcome to BATTLESHIP".colorize(:cyan, :bright)
   end
 
   def options
-    puts "Would you like to (p)lay, read the (i)nstructions, or (q)uit?".colorize(:blue)
+    puts "Would you like to (p)lay, read the (i)nstructions, or (q)uit?".colorize(:cyan)
     answer = gets.chomp.downcase
     if answer == "p" || answer == "play"
       @game
@@ -33,7 +33,7 @@ class Battleship
     puts "You won't be able to see the computer's board so you'll have to try and guess where their ships are."
     puts "When all of the squares that your ships occupy are hit, the ship will be sunk."
     puts "The first player who sinks all of their opponents ships wins, and the game ends."
-    puts "Would you like to (p)lay or (q)uit game?".colorize(:green)
+    puts "Would you like to (p)lay or (q)uit game?".colorize(:cyan, :bright)
     answer = get.chomp.downcase
     if answer == "p" || answer == "play"
       @game

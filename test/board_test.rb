@@ -1,6 +1,6 @@
-require 'simplecov'
-require 'minitest/autorun'
-require 'minitest/pride'
+# require 'simplecov'
+# require 'minitest/autorun'
+# require 'minitest/pride'
 
 class BoardTest < Minitest::Test
 
@@ -25,7 +25,7 @@ class BoardTest < Minitest::Test
 
   def test_it_can_set_comp_turn
     b = Board.new
-    
+
     b.turn!
     assert_equal false, b.player_turn?
   end

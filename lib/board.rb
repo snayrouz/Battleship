@@ -1,6 +1,6 @@
-# require 'colorize'
-# require 'messages'
-# require 'board'
+require 'colorize'
+require 'messages'
+require 'board'
 
 
 class Board

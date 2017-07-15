@@ -1,5 +1,5 @@
-# require 'colorize'
-# require 'messages'
+require 'colorize'
+require 'messages'
 
 
 

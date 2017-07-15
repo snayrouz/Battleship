@@ -1,7 +1,12 @@
 class CompShipPlacement
 
-  def small_boat_placement
 
+
+
+
+
+  def small_boat_placement
+    
 
 
   end

@@ -1,3 +1,7 @@
+
+
+require 'board'
+
 class Ship
 
   attr_reader :location

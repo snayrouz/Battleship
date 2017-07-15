@@ -37,7 +37,7 @@ class Messages
     end
   end
 
-  def comp_intro
+  def cpu_intro
     output.puts "I have laid out my ships on the grid.
     \nYou now need to layout your two ships.
     \nThe first is two units long and the\nsecond is three units long.
@@ -45,27 +45,33 @@ class Messages
     \nEnter the coordinates for the two unit ship: ".colorize(:magenta)
   end
 
-  def miss
+  def user_miss
     output.puts "You fired at #{coordinate} and missed!".colorize(:blue, :bright)
   end
 
-  def comp_miss
+  def cpu_miss
     output.puts "Your enemy fired at #{coordinate} missed!".colorize(:blue, :bright)
+  end
+
+  def user_invailid_placement
+    output.print "Invalid ship placement, try again: ".colorize(:red, :bright)
+  end
+
+  def user_invalid_shot
+    output.print "Invalid shot, try again: ".colorize(:red, :bright)
   end
 
   def direct_hit(coordinate)
     "Direct hit at #{coordinate}!".colorize(:yellow, :bright)
   end
 
-  def invailid
-    output.print "Invalid ship placement, try again: ".colorize(:red, :bright)
+  def invalid_length
+    "Your ship is either too long or too short. Try again: ".colorize(:red, :bright)
   end
 
-  def invalid_shot
-    output.print "Invalid shot, try again: ".colorize(:red, :bright)
+  def ask_for_third_ship
+    "Now enter the placement coordinates for your long ship: ".colorize(:green, :bright)
   end
-
-
 
 
 end

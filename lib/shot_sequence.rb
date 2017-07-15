@@ -6,7 +6,13 @@ require 'board'
 
 class ShotSequence
 
+  def user_shot
 
+  end
+
+  def cpu_shot
+    
+  end
 
 
 

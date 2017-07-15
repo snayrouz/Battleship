@@ -14,4 +14,4 @@ class Battleship
 
 end
 
-new_game = Battleship.new
+# new_game = Battleship.new

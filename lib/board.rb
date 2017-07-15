@@ -2,12 +2,13 @@ require 'colorize'
 require 'messages'
 require 'board'
 
-  attr_reader :array, :history
-
 class Board
+
+    attr_reader :array, :history
 
   def initialize
     @placement_history = []
+    @ship_positions = []
     @grid = grid
     @array = [
      "", "", "", "",
@@ -32,10 +33,10 @@ class Board
   end
 
   def user_small
-    if validate_small_ship(coordinate_1, coordinate_2) == true
+    if validate_small_ship(cell_1, cell_2) == true
       user_small_ship = Ship.new
-      user_small_ship.assign(coordinate_1)
-      user_small_ship.assign(coordinate_2)
+      user_small_ship.assign(cell_1)
+      user_small_ship.assign(cell_2)
     else
       puts Messages.invalid_length
     end
@@ -43,41 +44,46 @@ class Board
   end
 
   def user_large
-    if validate_large_ship(coordinate_1, coordinate_2) == true
+    if validate_large_ship(cell_1, cell_2) == true
       user_large_ship = Ship.new
-      user_large_ship.assign(coordinate_1)
-      user_large_ship.assign(coordinate_2)
+      user_large_ship.assign(cell_1)
+      user_large_ship.assign(cell_2)
     else
       puts Messages.invalid_length
     end
     return user_large_ship
   end
 
-  def validate_small_ship(coordinate_1, coordinate_2)
-    x = (coordinate_1 - coordinate_2).abs
+  def validate_small_ship?(coordinate_1, coordinate_2)
+    x = (cell_1 - cell_2).abs
       if (x == 1) || (x == 4)
         return true #create a method to make ships once validated
       else false
       end
   end
 
-  def validate_large_ship(coordinate_1, coordinate_2)
-    x = (coordinate_1 - coordinate_2).abs
+  def validate_large_ship?(cell_1, cell_2)
+    x = (cell_1 - cell_2).abs
     if (x == 2) || (x == 8)
       return true #create a method to make ships once validated
     else false
     end
   end
 
-  def add_to_history(coordinate)
-    @placement_history << coordinate
+  def add_to_history(cell)
+    @placement_history << cell
   end
 
-  def duplicate_shot?(coordinate)
+  def duplicate_shot?(cell)
     @placement_history.any? do |element|
-      element == coordinate
+      element == cell
     end
   end
 
+  def store_placed_ships
+    @placement_history = @ships.map do |ship|
+      ship.location
+    end
+  end
 
 end

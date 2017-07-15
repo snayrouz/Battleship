@@ -10,9 +10,10 @@ class Ship
     @location = []
   end
 
-  def assign(coordinate)
-    @location << coordinate
+  def assign(cell)
+    @location << cell
   end
+
 
 
 

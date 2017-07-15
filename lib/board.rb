@@ -19,6 +19,15 @@ class Board
     @start_time = Time.now
   end
 
+  def grid
+    grid = {'A1' => [0,0], 'B1' => [1,0], 'C1' => [2,0], 'D1' => [3,0],
+            'A2' => [1,0], 'B2' => [1,1], 'C2' => [1,2], 'D2' => [1,3],
+            'A3' => [2,0], 'B3' => [2,1], 'C3' => [2,2], 'D3' => [2,3],
+            'A4' => [3,0], 'B4' => [3,1], 'C4' => [3,2], 'D4' => [3,3]}
+
+
+  end
+
   def end_game_win
     @finish_time = Time.now
     @messages.win(@player_shot_counter, @start_time, @finish_time)

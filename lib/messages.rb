@@ -37,4 +37,7 @@ class Messages
     output.print "Invalid shot, try again: ".colorize(:red, :bright)
   end
 
+
+    
+
 end

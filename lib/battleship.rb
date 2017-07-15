@@ -1,17 +1,15 @@
 require 'colorize'
 require 'messages'
-require 'user_ship_placement'
-require 'cpu_ship_placement'
+require 'game'
 require 'board'
 
 class Battleship
 
 
-
+# will make this a runner file for the game sequence
+# pull method outputs in order of game flow
 
 
 
 
 end
-
-# new_game = Battleship.new

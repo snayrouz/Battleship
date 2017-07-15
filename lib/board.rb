@@ -21,22 +21,22 @@ class Board
 
   def end_game_win
     @finish_time = Time.now
-    @messager.win(@player_shot_counter, @start_time, @finish_time)
+    @messages.win(@player_shot_counter, @start_time, @finish_time)
     "Well, well, well. We have a winner! Great job!".colorize(:green, :bright)
   end
 
   def end_game_lose
     @finish_time = Time.now
-    @messager.lose(@comp_shot_counter, @start_time, @finish_time)
+    @messages.lose(@comp_shot_counter, @start_time, @finish_time)
     "Sorry, you lose. It's a bit of a hit or miss kind of game ;)".colorize(:red, :bright)
   end
 
   def print_player_map
-    @messager.print_player_map(@displayed_comp_board)
+    @messages.print_player_map(@displayed_comp_board)
   end
 
   def print_comp_map
-    @messager.print_comp_map(@player_board)
+    @messages.print_comp_map(@player_board)
   end
 
   def someone_won?

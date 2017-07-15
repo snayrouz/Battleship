@@ -4,6 +4,27 @@ require 'minitest/pride'
 
 class MessagesTest < Minitest::Test
 
+  def test_welcome_message
+    m = Messages.new
+
+    assert_equal "Welcome to BATTLESHIP", m.welcome
+  end
+
+  def test_options
+    m = Messages.new
+
+    assert_equal , m.options
+  end
+
+  def test_instructions
+    m = Messages.new
+
+
+
+    assert_equal , m.instructions
+  end
+
+
   def test_comp_introduces_itself
     m = Messages.new
 

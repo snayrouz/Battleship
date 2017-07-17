@@ -38,14 +38,6 @@ class Ship
     [12, 13, 14, 15]
   end
 
-  def in_row?
-    if in_first_row? || in_second_row? || in_third_row? || in_fourth_row?
-      true
-    else
-      false
-    end
-  end
-
   def in_first_row?
     @location.all do |cell|
       first_row.include?(cell)
@@ -67,6 +59,14 @@ class Ship
   def in_fourth_row?
     @location.all do |cell|
       fourth_row.include?(cell)
+    end
+  end
+
+  def in_row?
+    if in_first_row? || in_second_row? || in_third_row? || in_fourth_row?
+      true
+    else
+      false
     end
   end
 

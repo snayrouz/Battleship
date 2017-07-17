@@ -38,6 +38,12 @@ class BoardTest < Minitest::Test
     assert board.validate_large_ship?(coordinate_1, coordinate_2)
   end
 
+  def test_add_ship_to_board
+    board = Board.new
+
+    assert board.add_ship_to_board(ship)
+  end
+
   def test_cell_add_to_history
     skip
     board = Board.new
@@ -46,12 +52,11 @@ class BoardTest < Minitest::Test
     assert_equal [5], board.add_to_history(cell)
   end
 
-  def test_display_H_or_M
+  def test_store_placed_ships
     skip
     board = Board.new
 
-    assert "H" board.display_H_or_M
-    assert "M" board.display_H_or_M
+    assert board.store_placed_ships
   end
 
   def test_on_board?
@@ -62,6 +67,15 @@ class BoardTest < Minitest::Test
 
     assert board.on_board?(cell)
   end
+
+  def test_display_H_or_M
+    skip
+    board = Board.new
+
+    assert "H" board.display_H_or_M
+    assert "M" board.display_H_or_M
+  end
+
 
   def test_duplicate_shot
     skip

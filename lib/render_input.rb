@@ -4,6 +4,8 @@ require 'board'
 
 class RenderInput
 
+  # possibly make this a module but look into
+
   def grid_hash
       @grid = {'A1' => 0, 'B1' => 1, 'C1' => 2, 'D1' => 3,
               'A2' => 4, 'B2' => 5, 'C2' => 6, 'D2' => 7,

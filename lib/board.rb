@@ -82,7 +82,7 @@ class Board
 
   def add_ship_to_board(ship)
     if ship.h_or_v_postion? && !ships_overlap?(ship)
-      @ships << ship
+      @ship << ship
       stored_ship_list
     else
       Messages.user_invailid_placement

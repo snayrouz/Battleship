@@ -5,6 +5,12 @@ require 'board'
 class RenderInput
 
   # possibly make this a module but look into
+  # Modules are a way of grouping together methods, classes, and constants. 
+  # modules cannot be instantiated
+
+  def initialize
+    @grid = grid_hash
+  end
 
   def grid_hash
       @grid = {'A1' => 0, 'B1' => 1, 'C1' => 2, 'D1' => 3,
@@ -14,8 +20,7 @@ class RenderInput
   end
 
   def render(cell)
-    self.grid_hash[cell]
-    return value
+    self.grid[cell]
   end
 
 end

@@ -86,4 +86,12 @@ class Board
     end
   end
 
+  def displayed_cpu_board
+    #this method will display the current cpu board view
+  end
+
+  def user_board
+    #this method wil display the current user board view
+  end
+
 end

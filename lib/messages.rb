@@ -73,5 +73,8 @@ class Messages
     "Now enter the placement coordinates for your long ship: ".colorize(:green, :bright)
   end
 
+  def ship_on_board
+
+@game = Game.new_game
 
 end

@@ -10,19 +10,32 @@ class Board
     @placement_history = []
     @ship_positions = []
     @grid = grid
-    @array = [
+    @array_u = [
+     "", "", "", "",
+     "", "", "", "",
+     "", "", "", "",
+     "", "", "", ""]
+    @array_c = [
      "", "", "", "",
      "", "", "", "",
      "", "", "", "",
      "", "", "", ""]
   end
 
-  def render_to_screen
+  def render_to_screen_u
     ". 1  2  3  4 \n
-    A  #{@array[0]} #{@array[1]} #{@array[2]} #{@array[3]} \n
-    B  #{@array[4]} #{@array[5]} #{@array[6]} #{@array[7]} \n
-    C  #{@array[8]} #{@array[9]} #{@array[10]} #{@array[11]} \n
-    D  #{@array[12]} #{@array[13]} #{@array[14]} #{@array[15]} \n"
+    A  #{@array_u[0]} #{@array_u[1]} #{@array_u[2]} #{@array_u[3]} \n
+    B  #{@array_u[4]} #{@array_u[5]} #{@array_u[6]} #{@array_u[7]} \n
+    C  #{@array_u[8]} #{@array_u[9]} #{@array_u[10]} #{@array_u[11]} \n
+    D  #{@array_u[12]} #{@array_u13]} #{@array_u[14]} #{@array_u[15]} \n"
+  end
+
+  def render_to_screen_c
+    ". 1  2  3  4 \n
+    A  #{@array_c[0]} #{@array_c[1]} #{@array_c[2]} #{@array_c[3]} \n
+    B  #{@array_c[4]} #{@array_c[5]} #{@array_c[6]} #{@array_c[7]} \n
+    C  #{@array_c[8]} #{@array_c[9]} #{@array_c[10]} #{@array_c[11]} \n
+    D  #{@array_c[12]} #{@array_c[13]} #{@array_c[14]} #{@array_c[15]} \n"
   end
 
   def grid
@@ -57,7 +70,7 @@ class Board
   def validate_small_ship?(coordinate_1, coordinate_2)
     x = (cell_1 - cell_2).abs
       if (x == 1) || (x == 4)
-        return true #create a method to make ships once validated
+        return true ##this should also work to check overlap
       else false
       end
   end
@@ -65,7 +78,7 @@ class Board
   def validate_large_ship?(cell_1, cell_2)
     x = (cell_1 - cell_2).abs
     if (x == 2) || (x == 8)
-      return true #create a method to make ships once validated
+      return true #this should also work to check overlap
     else false
     end
   end
@@ -86,12 +99,24 @@ class Board
     end
   end
 
-  def displayed_cpu_board
-    #this method will display the current cpu board view
+  def ships_overlap?(ship) # do I need this if I have an empty array of strings holding the positions?
+    ship.location.any? do |cell|
+      ship_postions?(cell)
+    end
   end
 
-  def user_board
-    #this method wil display the current user board view
+  def stored_ship_list
+    @ship_positons = @ship.map do |ship|
+      ship.location
+    end
+  end
+
+  def on_board?(cell)
+    if (cell < 0) || (cell > array.length - 1)
+      true
+    else
+      Messages.user_invailid_placement
+    end
   end
 
 end

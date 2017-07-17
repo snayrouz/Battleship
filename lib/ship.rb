@@ -3,11 +3,12 @@ require 'board'
 class Ship
 
 
-#goal here is to see 
-  attr_reader :location
+#goal here is to see
+  attr_reader :location, :sunk
 
   def initialize
     @location = []
+    @sunk = false
   end
 
   def assign(cell)
@@ -46,33 +47,33 @@ class Ship
     [3, 7, 11, 15]
   end
 
-  def in_row?
-    if in_first_row?
-      true
-    elsif in_second_row?
-      true
-    elsif in_third_row?
-      true
-    elsif in_fourth_row?
-      true
-    else
-      return false
-    end
-  end
-
-  def in_column?
-    if in_first_column?
-      true
-    elsif in_second_column?
-      true
-    elsif in_third_column?
-      true
-    elsif in_fourth_column?
-      true
-    else
-      return false
-    end
-  end
+  # def in_row?
+  #   if in_first_row?
+  #     true
+  #   elsif in_second_row?
+  #     true
+  #   elsif in_third_row?
+  #     true
+  #   elsif in_fourth_row?
+  #     true
+  #   else
+  #     return false
+  #   end
+  # end
+  #
+  # def in_column?
+  #   if in_first_column?
+  #     true
+  #   elsif in_second_column?
+  #     true
+  #   elsif in_third_column?
+  #     true
+  #   elsif in_fourth_column?
+  #     true
+  #   else
+  #     return false
+  #   end
+  # end
 
 
 end

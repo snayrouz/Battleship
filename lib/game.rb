@@ -4,14 +4,18 @@ require 'board'
 
   class Game
 
-    @messages = Messages.new
-    @user_win_rule = false
-    @comp_win_rule = false
-    @comp_ships = []
-    @user_shot_count = 0
-    @cpu_shot_count = 0
-    @start_time = Time.now
-    @finish_time = Time.now
+    def initialize
+      @messages = Messages.new
+      @user_win_rule = false
+      @comp_win_rule = false
+      @comp_ships = []
+      @user_shot_count = 0
+      @cpu_shot_count = 0
+      @start_time = Time.now
+      @finish_time = Time.now
+    end
+
+    # have to build out shot sequence in this class for cpu and user
 
     def end_game_win
       @finish_time = Time.now
@@ -52,7 +56,7 @@ require 'board'
     # def render_to_screen_c
     #   @messages.screen_cpu(@array_u) #need to create user board w/ current board status
     # end
-    
+
     # unsure about these methods in this class. could be in board class
 
   end

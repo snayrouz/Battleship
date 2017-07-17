@@ -31,7 +31,7 @@ class Board
     A  #{@array_u[0]} #{@array_u[1]} #{@array_u[2]} #{@array_u[3]} \n
     B  #{@array_u[4]} #{@array_u[5]} #{@array_u[6]} #{@array_u[7]} \n
     C  #{@array_u[8]} #{@array_u[9]} #{@array_u[10]} #{@array_u[11]} \n
-    D  #{@array_u[12]} #{@array_u13]} #{@array_u[14]} #{@array_u[15]} \n"
+    D  #{@array_u[12]} #{@array_u[13]} #{@array_u[14]} #{@array_u[15]} \n"
   end
 
   def screen_cpu

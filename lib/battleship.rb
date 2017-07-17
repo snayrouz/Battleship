@@ -53,4 +53,4 @@ end
 
 
 game = Battleship.new
-gmae.start_game
+game.start_game

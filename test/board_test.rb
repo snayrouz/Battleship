@@ -18,13 +18,6 @@ class BoardTest < Minitest::Test
     assert_equal 16, board.array.length
   end
 
-  def test_render_to_screen
-    skip
-    board = Board.new
-
-    assert board.render_to_screen
-  end
-
   def test_valid_small_ship_returns_true
     skip
     board = Board.new
@@ -53,5 +46,38 @@ class BoardTest < Minitest::Test
     assert_equal [5], board.add_to_history(cell)
   end
 
+  def test_display_H_or_M
+    skip
+    board = Board.new
+
+    assert "H" board.display_H_or_M
+    assert "M" board.display_H_or_M
+  end
+
+  def test_on_board?
+    skip
+    board = Board.new
+
+    cell = "A1"
+
+    assert board.on_board?(cell)
+  end
+
+  def test_duplicate_shot
+    skip
+    board = Board.new
+
+    cell = 'A4'
+    assert_equal , board.duplicate_shot?(cell)
+  end
+
+  def test_shot_is_available
+    skip
+    board = Board.new
+    shot = 'A4'
+
+
+    assert_equal , board.shot_in_ship_list?(shot)
+  end
 
 end

@@ -1,15 +1,19 @@
 require 'colorize'
 require 'messages'
 require 'board'
+require 'ship'
+require 'render_input'
+
+#unsure if I need a ship_positions array, ship_list array, and placement_history. My logic is it should store in array_u and array_c
 
 class Board
 
-    attr_reader :array, :history
+    attr_reader :array, :history, :ship_positions, :ship_list
 
   def initialize
     @placement_history = []
     @ship_positions = []
-    @grid = grid
+    @ship_list = []
     @array_u = [
      "", "", "", "",
      "", "", "", "",
@@ -22,7 +26,7 @@ class Board
      "", "", "", ""]
   end
 
-  def render_to_screen_u
+  def screen_user
     ". 1  2  3  4 \n
     A  #{@array_u[0]} #{@array_u[1]} #{@array_u[2]} #{@array_u[3]} \n
     B  #{@array_u[4]} #{@array_u[5]} #{@array_u[6]} #{@array_u[7]} \n
@@ -30,19 +34,12 @@ class Board
     D  #{@array_u[12]} #{@array_u13]} #{@array_u[14]} #{@array_u[15]} \n"
   end
 
-  def render_to_screen_c
+  def screen_cpu
     ". 1  2  3  4 \n
     A  #{@array_c[0]} #{@array_c[1]} #{@array_c[2]} #{@array_c[3]} \n
     B  #{@array_c[4]} #{@array_c[5]} #{@array_c[6]} #{@array_c[7]} \n
     C  #{@array_c[8]} #{@array_c[9]} #{@array_c[10]} #{@array_c[11]} \n
     D  #{@array_c[12]} #{@array_c[13]} #{@array_c[14]} #{@array_c[15]} \n"
-  end
-
-  def grid
-    @grid = {'A1' => 0, 'B1' => 1, 'C1' => 2, 'D1' => 3,
-            'A2' => 4, 'B2' => 5, 'C2' => 6, 'D2' => 7,
-            'A3' => 8, 'B3' => 9, 'C3' => 10, 'D3' => 11,
-            'A4' => 12, 'B4' => 13, 'C4' => 14, 'D4' => 15}
   end
 
   def user_small
@@ -83,14 +80,17 @@ class Board
     end
   end
 
-  def add_to_history(cell)
-    @placement_history << cell
+  def add_ship_to_board(ship)
+    if ship.h_or_v_postion? && !ships_overlap?(ship)
+      @ships << ship
+      stored_ship_list
+    else
+      Messages.user_invailid_placement
+    end
   end
 
-  def duplicate_shot?(cell)
-    @placement_history.any? do |element|
-      element == cell
-    end
+  def add_to_history(cell)
+    @placement_history << cell
   end
 
   def store_placed_ships
@@ -109,6 +109,7 @@ class Board
     @ship_positons = @ship.map do |ship|
       ship.location
     end
+    stored_ship_list.flatten
   end
 
   def on_board?(cell)
@@ -117,6 +118,29 @@ class Board
     else
       Messages.user_invailid_placement
     end
+  end
+
+  def display_H_or_M
+    stored_ship_list
+    @placement_history.each do |shot|
+      if shot_in_ship_list?(shot)
+        @array[shot] = "H"
+      else
+        @array[shot] = "M"
+      end
+    end
+  end
+
+  def duplicate_shot?(cell)
+    @placement_history.any? do |element|
+      element == cell
+    end
+  end
+
+  def shot_in_ship_list?(shot)
+     @ship_list.any? do |location|
+       shot == location
+     end
   end
 
 end

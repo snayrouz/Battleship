@@ -25,14 +25,6 @@ require 'board'
       "Sorry, you lose. It's a bit of a hit or miss kind of game ;)".colorize(:red, :bright)
     end
 
-    def print_user_map
-      @messages.print_user_map(@displayed_cpu_board) #need to create cpu board w/ current board status
-    end
-
-    def print_cpu_map
-      @messages.print_cpu_map(@user_board) #need to create user board w/ current board status
-    end
-
     def someone_won?
       @user_win_rule || @cpu_win_rule
     end
@@ -52,5 +44,15 @@ require 'board'
     def turn!
       @user_turn = !@user_turn
     end
+
+    # def render_to_screen_u
+    #   @messages.screen_user(@array_c) #need to create cpu board w/ current board status
+    # end
+    #
+    # def render_to_screen_c
+    #   @messages.screen_cpu(@array_u) #need to create user board w/ current board status
+    # end
+    
+    # unsure about these methods in this class. could be in board class
 
   end

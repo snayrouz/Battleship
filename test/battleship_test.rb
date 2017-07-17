@@ -11,5 +11,5 @@ class BattleshipTest < Minitest::test
     assert_instance_of Battleship, b
   end
 
-
+  
 end

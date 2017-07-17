@@ -1,4 +1,7 @@
 require 'colorize'
+require 'game'
+require 'board'
+require 'ship'
 
 
 class Messages
@@ -46,11 +49,11 @@ class Messages
   end
 
   def user_miss
-    output.puts "You fired at #{coordinate} and missed!".colorize(:blue, :bright)
+    output.puts "You fired at #{cell} and missed!".colorize(:red, :bright)
   end
 
   def cpu_miss
-    output.puts "Your enemy fired at #{coordinate} missed!".colorize(:blue, :bright)
+    output.puts "Your enemy fired at #{cell} missed!".colorize(:red, :bright)
   end
 
   def user_invailid_placement
@@ -61,19 +64,21 @@ class Messages
     output.print "Invalid shot, try again: ".colorize(:red, :bright)
   end
 
-  def direct_hit(coordinate)
-    "Direct hit at #{coordinate}!".colorize(:yellow, :bright)
-  end
-
   def invalid_length
     "Your ship is either too long or too short. Try again: ".colorize(:red, :bright)
   end
 
-  def ask_for_third_ship
-    "Now enter the placement coordinates for your long ship: ".colorize(:green, :bright)
+  def direct_hit(coordinate)
+    "Direct hit at #{cell}!".colorize(:yellow)
   end
 
-  def ship_on_board
+  def ask_for_third_ship
+    "Now enter the placement coordinates for your long ship: ".colorize(:green)
+  end
+
+  def user_turn
+    "It's your turn to fire! Enter your selection: ".colorize(:green)
+  end
 
 @game = Game.new_game
 

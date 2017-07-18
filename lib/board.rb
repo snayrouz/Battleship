@@ -1,7 +1,7 @@
 require 'colorize'
-require 'messages'
-require 'ship'
-require 'render_input'
+require './lib/messages'
+require './lib/ship'
+require './lib/render_input'
 
 # unsure if I need a ship_positions array, ship_list array, and placement_history.
 # My logic is it should store in array_u and array_c and then can itterate through those arrays

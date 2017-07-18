@@ -1,4 +1,5 @@
-require 'board'
+require './lib/board'
+
 
 class Ship
 

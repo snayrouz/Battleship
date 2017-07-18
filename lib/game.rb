@@ -1,8 +1,9 @@
 require 'colorize'
-require 'messages'
-require 'board'
+require './lib/messages'
+require './lib/board'
 
-  class Game
+
+class Game
 
     def initialize
       @messages = Messages.new
@@ -59,4 +60,4 @@ require 'board'
 
     # unsure about these methods in this class. could be in board class
 
-  end
+end

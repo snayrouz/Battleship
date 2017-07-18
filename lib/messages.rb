@@ -4,7 +4,7 @@ module Messages
 
 
   def welcome
-    "Welcome to BATTLESHIP".colorize(:cyan, :bright)
+    prints "Welcome to BATTLESHIP".colorize(:cyan, :bright)
   end
 
   def options
@@ -77,6 +77,6 @@ module Messages
     "It's your turn to fire! Enter your selection: ".colorize(:green)
   end
 
-@game = Game.new_game
+# @game = Game.new_game
 
 end

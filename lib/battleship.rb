@@ -1,8 +1,8 @@
 require 'colorize'
-require 'messages'
-require 'game'
-require 'board'
-require 'render_input'
+require './lib/messages'
+require './lib/game'
+require './lib/board'
+require './lib/render_input'
 
 class Battleship
   include Messages
@@ -85,4 +85,4 @@ end
 
 
 game = Battleship.new
-game.start_game
+# game.start_game

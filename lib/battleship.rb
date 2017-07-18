@@ -1,6 +1,6 @@
 require 'colorize'
 require 'messages'
-# require 'game'
+require 'game'
 require 'board'
 require 'render_input'
 
@@ -17,6 +17,10 @@ class Battleship
     Messages.welcome
     Messages.options
     Messages.instructions
+  end
+
+  def cpu_rand_placement
+    #create randmom cpu ship placement
     Messages.cpu_intro
   end
 
@@ -65,7 +69,7 @@ class Battleship
   end
 
   def cpu_shot_sequence
-    #method that iterates through filled grid to see what's available for cpu to shoot at
+    # create random shot sequence based on the cell available
     player_shot_sequence
   end
 

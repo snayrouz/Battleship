@@ -1,6 +1,5 @@
 require 'colorize'
 require 'messages'
-require 'board'
 require 'ship'
 require 'render_input'
 

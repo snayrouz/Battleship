@@ -74,6 +74,7 @@ class Battleship
   end
 
   def end_game_sequence
+    # if/else where if user or cpu has direct hits on both small/large ships, the winner will be set.
     # grab methods from Game to test if someone has won or not, then output message for end of game depending on winner
     # play again method or exit game?
   end

@@ -4,7 +4,8 @@ require 'board'
 require 'ship'
 require 'render_input'
 
-#unsure if I need a ship_positions array, ship_list array, and placement_history. My logic is it should store in array_u and array_c
+# unsure if I need a ship_positions array, ship_list array, and placement_history.
+# My logic is it should store in array_u and array_c and then can itterate through those arrays
 
 class Board
 
@@ -42,7 +43,7 @@ class Board
     D  #{@array_c[12]} #{@array_c[13]} #{@array_c[14]} #{@array_c[15]} \n"
   end
 
-  def user_small
+  def user_small(cell_1, cell_2)
     if validate_small_ship(cell_1, cell_2) == true
       user_small_ship = Ship.new
       user_small_ship.assign(cell_1)
@@ -50,7 +51,6 @@ class Board
     else
       puts Messages.invalid_length
     end
-    return user_small_ship
   end
 
   def user_large
@@ -79,6 +79,18 @@ class Board
     else false
     end
   end
+
+  def fill_cells(cell_1, cell_2)
+    x = (cell_1 - cell_2).abs
+      if x == 8
+        cell_1 + 4
+      elsif x == 2
+        cell_1 + 1
+      else
+        Messages.user_invalid_shot
+      end
+  end
+
 
   def add_ship_to_board(ship)
     if ship.h_or_v_postion? && !ships_overlap?(ship)
@@ -112,14 +124,6 @@ class Board
     stored_ship_list.flatten
   end
 
-  def on_board?(cell)
-    if (cell < 0) || (cell > array.length - 1)
-      true
-    else
-      Messages.user_invailid_placement
-    end
-  end
-
   def display_H_or_M
     stored_ship_list
     @placement_history.each do |shot|
@@ -128,6 +132,14 @@ class Board
       else
         @array[shot] = "M"
       end
+    end
+  end
+
+  def on_board?(cell)
+    if (cell < 0) || (cell > array.length - 1)
+      true
+    else
+      Messages.user_invailid_placement
     end
   end
 

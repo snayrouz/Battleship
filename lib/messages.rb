@@ -1,10 +1,6 @@
 require 'colorize'
-require 'game'
-require 'board'
-require 'ship'
+module Messages
 
-
-class Messages
 
   def welcome
     "Welcome to BATTLESHIP".colorize(:cyan, :bright)
@@ -41,7 +37,7 @@ class Messages
   end
 
   def cpu_intro
-    output.puts "I have laid out my ships on the grid.
+    puts "I have laid out my ships on the grid.
     \nYou now need to layout your two ships.
     \nThe first is two units long and the\nsecond is three units long.
     \nThe grid has A1 at the top left and D4 at the bottom right.
@@ -68,7 +64,7 @@ class Messages
     "Your ship is either too long or too short. Try again: ".colorize(:red, :bright)
   end
 
-  def direct_hit(coordinate)
+  def direct_hit(cell)
     "Direct hit at #{cell}!".colorize(:yellow)
   end
 

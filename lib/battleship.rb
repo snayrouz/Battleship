@@ -1,9 +1,12 @@
 require 'colorize'
 require 'messages'
-require 'game'
+# require 'game'
 require 'board'
+require 'render_input'
 
 class Battleship
+  include Messages
+  include RenderInput
 
   def initialize
     @user_board = Board.new
@@ -14,27 +17,51 @@ class Battleship
     Messages.welcome
     Messages.options
     Messages.instructions
-  end
-
-  def small_ship_placement_user
-    #create method to randomize ship placement for cpu
     Messages.cpu_intro
-
-    input = gets.chomp.upcase
-    # create method to take cells inputed and assign to grid.
   end
 
-  def large_ship_placement_user
+  def user_place_ship_sequence
     input = gets.chomp.upcase
-    # create method to take cells inputed and assign to grid.
-    # last method here will be to initiate player_shot_sequence
+
+    placed_cell = input.split
+    cell_1 = RenderInput.render(placed_cell[0])
+    cell_2 = RenderInput.render(placed_cell[0])
+
+    ship_1 = @user_board.user_small(cell_1, cell_2)
+    @user_board.add_ship_to_board(ship_1)
+    user_place_large_sequence
+  end
+
+  def user_place_large_sequence
+    input = gets.chomp.upcase
+
+    placed_cell = input.split
+    cell_1 = RenderInput.render(placed_cell[0])
+    cell_2 = RenderInput.render(placed_cell[-2])
+
+    ship_2 = @user_board.user_small(cell_1, cell_2)
+    @user_board.add_ship_to_board(ship_2)
+    player_shot_sequence
   end
 
   def player_shot_sequence
     Messages.user_turn
 
     input = gets.chomp.upcase
-    # create player shot sequence method using the methods created in other class
+    placed_cell = input
+    cell = RenderInput.render(placed_cell)
+    if @cpu_board.on_board?(cell)
+      Messages.user_invalid_shot
+      player_shot_sequence
+    elsif @cpu_board.duplicate_shot(cell)
+      Messages.user_invalid_shot
+    elsif @cpu_board.shot_in_ship_list?(cell)
+      @cpu_board.add_to_history(cell)
+      Messages.direct_hit(cell)
+    else
+      @cpu_board.add_to_history(cell)
+      Messages.user_miss
+    end
   end
 
   def cpu_shot_sequence

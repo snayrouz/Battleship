@@ -2,7 +2,7 @@ require 'board'
 
 class Ship
 
-  attr_reader :location, :sunk
+  attr_reader :location
 
   def initialize
     @location = []
@@ -13,6 +13,13 @@ class Ship
     @location << cell
   end
 
+  def ship_first_cell
+    @location[0]
+  end
+
+  def ship_last_cell
+    @location[-1]
+  end
 
   def on_ship?(cell)
     if @location.include?(cell)

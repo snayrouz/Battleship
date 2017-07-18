@@ -11,6 +11,7 @@ class Battleship
   def initialize
     @user_board = Board.new
     @cpu_board = Board.new
+    @print = PrintBoard.new
   end
 
   def start_game
